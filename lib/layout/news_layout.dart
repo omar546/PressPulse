@@ -9,24 +9,26 @@ class NewsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsCubit(),
+      create: (context) => NewsCubit()..getBusiness(),
       child: BlocConsumer<NewsCubit, NewsStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = NewsCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              title: const Center(
-                  child: Text(
+              title: const Text(
                 'PressPulse',
                 style: TextStyle(fontSize: 20, fontFamily: 'wilson'),
-              )),
+              ),
+              actions: [
+                IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.search_rounded)),
+              ],
             ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,
               onTap: (index) => cubit.changeBottomNavBar(index),
               items: cubit.bottomItems,
-
             ),
             body: cubit.screens[cubit.currentIndex],
           );
