@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:press_pulse/shared/components/components.dart';
@@ -65,7 +66,7 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: articleBuilder(list)),
+                Expanded(child: articleBuilder(list,isSearch: true)),
               ]
           ),
         );

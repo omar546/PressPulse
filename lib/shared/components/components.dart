@@ -60,7 +60,7 @@ Widget buildArticleItem(article,context) {
   );
 }
 
-Widget articleBuilder(List list)=> ConditionalBuilder(
+Widget articleBuilder(List list,{isSearch=false})=> ConditionalBuilder(
       condition: list.isNotEmpty,
       builder: (context) => ListView.separated(
         physics: const BouncingScrollPhysics(),
@@ -81,6 +81,7 @@ Widget articleBuilder(List list)=> ConditionalBuilder(
         itemCount: list.length,
       ),
       fallback: (context) =>
+      isSearch ? Container() :
       const Center(child: CircularProgressIndicator()));
 
 
