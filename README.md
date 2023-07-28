@@ -1,7 +1,7 @@
 # press_pulse
 
-![icon](https://github.com/omar546/PressPulse/assets/71936776/2cc1c8e4-ddee-47ef-9856-ecc200d1c775)
 
+![icon](https://github.com/omar546/PressPulse/assets/71936776/691c2441-ff66-4cce-a50e-66d746b6f0c6)
 
 
 news Flutter app.
@@ -10,7 +10,6 @@ and used : BloC / Cubit
 
 
 
-![Screenshot_20230728_104720](https://github.com/omar546/PressPulse/assets/71936776/700b00d2-ade0-4962-b546-115c57d05f31)
+![Screenshot_20230728_104720](https://github.com/omar546/PressPulse/assets/71936776/823cd9ba-56b7-413b-ada0-4e69434dccee)
 
-
-![Screenshot_20230728_104818](https://github.com/omar546/PressPulse/assets/71936776/7639e71d-4afd-4880-ace4-b4f4a8ca2342)
+![Screenshot_20230728_104818](https://github.com/omar546/PressPulse/assets/71936776/8bf3032c-5e07-4822-9bed-754a0d28a019)
