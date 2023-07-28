@@ -9,7 +9,5 @@ and used : BloC / Cubit
 
 
 
-## Installation
-
-you can try it by downloading it directly from <a href="https://download856.mediafire.com/mylr05cekrugQfK2CR-OHjuKEwxv7mkgqqySDPD5SSlaTJ5QsGL3I5UqyZfbsUAEYwV_ooPwtBYXkWrtpTjjjZkMK65DxUEOpFUeX203HmyeayGCadXdQ0ZN-Ae1Qtqs513xTJe-vUEVoq3NbL_HIhN8yyCFHYl3oARiVNOephlkfA/7sm6embi9x1d2pl/PressPulse.apk">HERE</a>
-
+![Screenshot_20230728_104720](https://github.com/omar546/PressPulse/assets/71936776/700b00d2-ade0-4962-b546-115c57d05f31)
+![Screenshot_20230728_104818](https://github.com/omar546/PressPulse/assets/71936776/7639e71d-4afd-4880-ace4-b4f4a8ca2342)
