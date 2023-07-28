@@ -9,6 +9,7 @@ import 'states.dart';
 
 class NewsCubit extends Cubit<NewsStates> {
   NewsCubit() : super(NewsInitialState());
+  var country ;
   static NewsCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   List<BottomNavigationBarItem> bottomItems = [
@@ -49,10 +50,8 @@ class NewsCubit extends Cubit<NewsStates> {
       'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
     }).then((value) {
       business = value.data['articles'];
-      print(business[0]['urlToImage']);
       emit(NewsGetBusinessSuccessState());
     }).catchError((error) {
-      print(error.toString());
       emit(NewsGetBusinessErrorState(error));
     });
   }
@@ -69,10 +68,8 @@ class NewsCubit extends Cubit<NewsStates> {
         'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
       }).then((value) {
         sports = value.data['articles'];
-        print(sports[0]['urlToImage']);
         emit(NewsGetSportsSuccessState());
       }).catchError((error) {
-        print(error.toString());
         emit(NewsGetSportsErrorState(error));
       });
     } else {
@@ -92,15 +89,30 @@ class NewsCubit extends Cubit<NewsStates> {
         'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
       }).then((value) {
         science = value.data['articles'];
-        print(science[0]['urlToImage']);
         emit(NewsGetScienceSuccessState());
       }).catchError((error) {
-        print(error.toString());
         emit(NewsGetScienceErrorState(error));
       });
     } else {
       emit(NewsGetScienceSuccessState());
     }
   }
+
+
+  List<dynamic> search = [];
+
+  void getSearch(String value) {
+    emit(NewsGetSearchLoadingState());
+      DioHelper.getData(url: 'v2/everything', query: {
+        'q': value,
+        'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
+      }).then((value) {
+        search = value.data['articles'];
+        emit(NewsGetSearchSuccessState());
+      }).catchError((error) {
+        emit(NewsGetSearchErrorState(error));
+      });
+
+    }
 
 }

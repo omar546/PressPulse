@@ -1,12 +1,13 @@
 
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc_observer.dart';
 import 'layout/news_layout.dart';
+import 'shared/cubit/cubit.dart';
+import 'shared/cubit/states.dart';
 import 'shared/network/remote/dio_helper.dart';
 import 'shared/styles/styles.dart';
 
@@ -16,6 +17,7 @@ void main() {
 
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
+  // await CachHelper.init();
   runApp(const MyApp());
 }
 
@@ -49,67 +51,85 @@ class MyApp extends StatelessWidget {
       800: Color(0xFFFF4047),
       900: Color(0xFFFF2E35),
     });
+    return MultiBlocProvider(
+        providers:
+        [
+          BlocProvider(
+            create: (context) => NewsCubit()
+              ..getBusiness()
+              ..getSports()
+              ..getScience(),
+          ),
+
+        ],
+        child: BlocConsumer<NewsCubit, NewsStates>(
+        listener: (context, state) {},
+    builder: (context, state) {
     return MaterialApp(
 
-      debugShowCheckedModeBanner: false,
-      title: 'PressPulse',
-      theme: ThemeData(
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          elevation: 30,
-          backgroundColor: Styles.whiteColor,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Styles.caribbean,
-          unselectedItemColor: Styles.greyColor,
-          selectedLabelStyle: TextStyle(fontFamily: 'wilson'),
-          unselectedLabelStyle: TextStyle(fontFamily: 'wilson'),
-        ),
-        appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(color: Styles.caribbean),
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Styles.whiteColor,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          backgroundColor: Styles.whiteColor,
-          elevation: 0.0,
-          titleTextStyle: TextStyle(color: Styles.caribbean),
-        ),
-        scaffoldBackgroundColor: Styles.whiteColor,
-        primarySwatch:customColorCari,
-          textTheme: TextTheme(
-            bodyMedium: const TextStyle(color: Styles.blackColor,fontFamily: 'vexa',fontSize: 14),
-            bodySmall: TextStyle(color: Styles.blackColor.withOpacity(0.5),fontFamily: 'vexa',fontSize: 11),
-        ),
-      ),
-      darkTheme: ThemeData(
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          elevation: 30,
-          backgroundColor: Styles.blackColor,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Styles.crayola,
-          unselectedItemColor: Styles.greyColor,
-          selectedLabelStyle: TextStyle(fontFamily: 'wilson'),
-          unselectedLabelStyle: TextStyle(fontFamily: 'wilson'),
-        ),
-        appBarTheme: const AppBarTheme(
-          iconTheme: IconThemeData(color: Styles.crayola),
+    debugShowCheckedModeBanner: false,
+    title: 'PressPulse',
+    theme: ThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    elevation: 30,
+    backgroundColor: Styles.whiteColor,
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: Styles.caribbean,
+    unselectedItemColor: Styles.greyColor,
+    selectedLabelStyle: TextStyle(fontFamily: 'wilson'),
+    unselectedLabelStyle: TextStyle(fontFamily: 'wilson'),
+    ),
+    appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(color: Styles.caribbean),
+    systemOverlayStyle: SystemUiOverlayStyle(
+    statusBarColor: Styles.whiteColor,
+    statusBarIconBrightness: Brightness.dark,
+    ),
+    backgroundColor: Styles.whiteColor,
+    elevation: 0.0,
+    titleTextStyle: TextStyle(color: Styles.caribbean),
+    ),
+    scaffoldBackgroundColor: Styles.whiteColor,
+    primarySwatch:customColorCari,
+    textTheme: TextTheme(
+    bodyMedium: const TextStyle(color: Styles.blackColor,fontFamily: 'vexa',fontSize: 14),
+    bodySmall: TextStyle(color: Styles.blackColor.withOpacity(0.5),fontFamily: 'vexa',fontSize: 11),
 
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Styles.blackColor,
-            statusBarIconBrightness: Brightness.light,
-          ),
-          backgroundColor: Styles.blackColor,
-          elevation: 0.0,
-          titleTextStyle: TextStyle(color: Styles.crayola),
+    ),
+    ),
+    darkTheme: ThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    elevation: 30,
+    backgroundColor: Styles.blackColor,
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: Styles.crayola,
+    unselectedItemColor: Styles.greyColor,
+    selectedLabelStyle: TextStyle(fontFamily: 'wilson'),
+    unselectedLabelStyle: TextStyle(fontFamily: 'wilson'),
+    ),
+    appBarTheme: const AppBarTheme(
+    iconTheme: IconThemeData(color: Styles.crayola),
 
-        ),
-        scaffoldBackgroundColor: Styles.blackColor,
-          primarySwatch:customColorCry,
-    textTheme:  TextTheme(bodyMedium: const TextStyle(color: Styles.whiteColor,fontFamily: 'vexa',fontSize: 14),
-      bodySmall: TextStyle(color: Styles.greyColor.withOpacity(0.5),fontFamily: 'vexa',fontSize: 11),
+    systemOverlayStyle: SystemUiOverlayStyle(
+    statusBarColor: Styles.blackColor,
+    statusBarIconBrightness: Brightness.light,
+    ),
+    backgroundColor: Styles.blackColor,
+    elevation: 0.0,
+    titleTextStyle: TextStyle(color: Styles.crayola),
+
+    ),
+    scaffoldBackgroundColor: Styles.blackColor,
+    primarySwatch:customColorCry,
+    textTheme: TextTheme(bodyMedium: const TextStyle(color: Styles.whiteColor,fontFamily: 'vexa',fontSize: 14),
+    bodySmall: TextStyle(color: Styles.greyColor.withOpacity(0.5),fontFamily: 'vexa',fontSize: 11),
 
 
     )),
-      home: const NewsLayout(),
+    home: const NewsLayout(),
+      );
+    },
+        ),
     );
   }
 }
