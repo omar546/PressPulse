@@ -1,5 +1,7 @@
 
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,19 +13,30 @@ import 'shared/cubit/states.dart';
 import 'shared/network/remote/dio_helper.dart';
 import 'shared/styles/styles.dart';
 
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext ? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 void main() {
-  //WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   // if main() is async and there is await down here it will wait for it to finish before launching app
 
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  // await CachHelper.init();
-  runApp(const MyApp());
+  // await CacheHelper.init();
+  // bool isDark = CacheHelper.getBoolean(key: 'isDark') ?? false;
+  runApp(
+      MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
+  // final bool isDark;
+  // const MyApp(this.isDark, {super.key});
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -92,8 +105,12 @@ class MyApp extends StatelessWidget {
     scaffoldBackgroundColor: Styles.whiteColor,
     primarySwatch:customColorCari,
     textTheme: TextTheme(
-    bodyMedium: const TextStyle(color: Styles.blackColor,fontFamily: 'vexa',fontSize: 14),
-    bodySmall: TextStyle(color: Styles.blackColor.withOpacity(0.5),fontFamily: 'vexa',fontSize: 11),
+    bodyMedium: TextStyle(
+        color: Styles.blackColor,
+        fontFamily: 'thunder',fontSize: 20),
+    bodySmall: TextStyle(
+        color: Styles.blackColor.withOpacity(0.5),
+        fontFamily: 'wilson',fontSize: 11),
 
     ),
     ),
@@ -121,11 +138,19 @@ class MyApp extends StatelessWidget {
     ),
     scaffoldBackgroundColor: Styles.blackColor,
     primarySwatch:customColorCry,
-    textTheme: TextTheme(bodyMedium: const TextStyle(color: Styles.whiteColor,fontFamily: 'vexa',fontSize: 14),
-    bodySmall: TextStyle(color: Styles.greyColor.withOpacity(0.5),fontFamily: 'vexa',fontSize: 11),
+    textTheme: TextTheme(bodyMedium:  TextStyle(
+        color: Styles.whiteColor,
+        fontFamily: 'thunder',fontSize: 20),
+    bodySmall: TextStyle(
+        color: Styles.greyColor.withOpacity(0.5),
+        fontFamily: 'wilson',fontSize: 11),
 
 
-    )),
+    )
+
+    ),
+      // themeMode:
+      // NewsCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
     home: const NewsLayout(),
       );
     },

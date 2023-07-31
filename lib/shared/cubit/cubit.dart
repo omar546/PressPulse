@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:press_pulse/shared/components/components.dart';
 
+import '../../layout/news_layout.dart';
 import '../../modules/business/business_screen.dart';
 import '../../modules/science/science_screen.dart';
 import '../../modules/sports/sports_screen.dart';
+import '../network/local/cache_helper.dart';
 import '../network/remote/dio_helper.dart';
 import 'states.dart';
 
 class NewsCubit extends Cubit<NewsStates> {
   NewsCubit() : super(NewsInitialState());
-  var country ;
+
   static NewsCubit get(context) => BlocProvider.of(context);
   int currentIndex = 0;
   List<BottomNavigationBarItem> bottomItems = [
     const BottomNavigationBarItem(
-        icon: Icon(Icons.business_center_rounded), label: "Business"),
-    const BottomNavigationBarItem(icon: Icon(Icons.sports), label: "Sports"),
+        icon: Icon(Icons.monetization_on), label: "Business"),
+    const BottomNavigationBarItem(icon: Icon(Icons.sports_basketball), label: "Sports"),
     const BottomNavigationBarItem(
         icon: Icon(Icons.science_rounded), label: "Science"),
     // const BottomNavigationBarItem(
@@ -32,6 +35,21 @@ class NewsCubit extends Cubit<NewsStates> {
     emit(NewsBottomNavState());
   }
 
+  // bool isDark = false;
+  // void changeMode({bool? fromShared}) {
+  //   if (fromShared != null) {
+  //     isDark = fromShared;
+  //     emit(AppChangeModeState());
+  //   } else {
+  //     isDark = !isDark;
+  //     CacheHelper.putBoolean(key: 'isDark', value: isDark).then(
+  //           (value) {
+  //             emit(AppChangeModeState());
+  //
+  //       },
+  //     );
+  //   }
+  // }
 
   List<Widget> screens = [
     const BusinessScreen(),
@@ -45,7 +63,7 @@ class NewsCubit extends Cubit<NewsStates> {
   void getBusiness() {
     emit(NewsGetBusinessLoadingState());
     DioHelper.getData(url: 'v2/top-headlines', query: {
-      'country': 'eg',
+      'country': 'us',
       'category': 'business',
       'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
     }).then((value) {
@@ -63,7 +81,7 @@ class NewsCubit extends Cubit<NewsStates> {
     if (sports.isEmpty) {
 
       DioHelper.getData(url: 'v2/top-headlines', query: {
-        'country': 'eg',
+        'country': 'us',
         'category': 'sports',
         'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
       }).then((value) {
@@ -84,7 +102,7 @@ class NewsCubit extends Cubit<NewsStates> {
 
     if (science.isEmpty) {
       DioHelper.getData(url: 'v2/top-headlines', query: {
-        'country': 'eg',
+        'country': 'us',
         'category': 'science',
         'apiKey': '65f7f556ec76449fa7dc7c0069f040ca'
       }).then((value) {

@@ -21,6 +21,13 @@ class NewsLayout extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontFamily: 'wilson'),
             ),
             actions: [
+            //   IconButton(
+            //   onPressed: () {
+            //     cubit.changeMode();
+            //
+            //   },
+            //   icon: const Icon(Icons.dark_mode_outlined),
+            // ),
               IconButton(
                   onPressed: () {
                     navigateTo(context, SearchScreen());

@@ -68,12 +68,12 @@ Widget articleBuilder(List list,{isSearch=false})=> ConditionalBuilder(
           return buildArticleItem(list[index],context);
         },
         separatorBuilder: (context, index) => Column(
-          children: [
-            const SizedBox(
+          children: const [
+            SizedBox(
               height: 2.5,
             ),
-            const SizedBox(height: 2,width: 500,),
-            const SizedBox(
+            SizedBox(height: 2,width: 500,),
+            SizedBox(
               height: 2.5,
             ),
           ],

@@ -34,4 +34,4 @@ class NewsGetSearchErrorState extends NewsStates{
 
   NewsGetSearchErrorState(this.error);
 }
-
+// class AppChangeModeState extends NewsStates {}

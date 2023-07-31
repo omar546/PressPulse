@@ -208,6 +208,9 @@ flutter_native_splash:
   #  - 'ios/Runner/Info-Release.plist'
 flutter:
   fonts:
+    - family: thunder
+      fonts:
+        - asset: assets/fonts/Thunder-SemiBoldLC.ttf
     - family: vexa
       fonts:
         - asset: assets/fonts/VEXA.ttf
