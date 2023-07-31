@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:press_pulse/shared/components/components.dart';
 
-import '../../layout/news_layout.dart';
 import '../../modules/business/business_screen.dart';
 import '../../modules/science/science_screen.dart';
 import '../../modules/sports/sports_screen.dart';
-import '../network/local/cache_helper.dart';
 import '../network/remote/dio_helper.dart';
 import 'states.dart';
 
