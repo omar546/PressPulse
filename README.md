@@ -1,7 +1,7 @@
 # press_pulse
 
 ## news Flutter app.
-### in the process, I worked with: Dio, Api, AppThem and used : BloC / Cubit
+### in the process, I worked with: Dio, Rest-Api, AppThem and used : BloC / Cubit
 
 ## Installation
 
