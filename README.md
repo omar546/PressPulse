@@ -4,6 +4,6 @@
 
 ## Installation
 
-You can try it by downloading it from the releases
+You can try it by downloading it from the [releases](../../releases)
 
 ![Untitled design](https://github.com/omar546/PressPulse/assets/71936776/fa7df252-0423-4835-9341-abf8ed8e61ef)
